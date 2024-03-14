@@ -1,0 +1,43 @@
+@model IEnumerable<HealthProject.Models.DeviceStatistic>
+
+@{
+    ViewData["Title"] = "Device Statistics";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (ViewBag.DbConnectionTest != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.DbConnectionTest
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Battery</th>
+            <th>Firmware</th>
+            <th>Date and Time</th>
+            <th>User Device ID</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Battery)</td>
+            <td>@Html.DisplayFor(modelItem => item.Firmware)</td>
+            <td>@Html.DisplayFor(modelItem => item.Datetime)</td>
+            <td>@Html.DisplayFor(modelItem => item.UserDeviceID)</td>
+        </tr>
+    }
+    </tbody>
+</table>

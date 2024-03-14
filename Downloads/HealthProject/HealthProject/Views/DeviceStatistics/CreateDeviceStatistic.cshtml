@@ -1,0 +1,55 @@
+@model HealthProject.Models.DeviceStatistic
+
+@{
+    ViewData["Title"] = "Create Device Statistic";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Use the shared layout
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+
+            <form asp-action="Create" method="post" class="shadow p-4 rounded bg-light">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group">
+                    <label asp-for="Battery" class="control-label">Battery Level</label>
+                    <input asp-for="Battery" class="form-control" placeholder="Enter the battery level, e.g., 75%" />
+                    <span asp-validation-for="Battery" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Firmware" class="control-label">Firmware Version</label>
+                    <input asp-for="Firmware" class="form-control" placeholder="Enter the firmware version, e.g., 1.0.0" />
+                    <span asp-validation-for="Firmware" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Datetime" class="control-label">Date and Time of Measurement</label>
+                    <input asp-for="Datetime" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="Datetime" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="UserDeviceID" class="control-label">User Device ID</label>
+                    <input asp-for="UserDeviceID" class="form-control" placeholder="Enter the associated user device ID" />
+                    <span asp-validation-for="UserDeviceID" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
